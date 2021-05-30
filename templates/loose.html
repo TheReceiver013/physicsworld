@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+    Map
+{% endblock %}
+
+{% block main %}
+
+<form action="/loose" method="post">
+    <input type="hidden" name="loose" id="loose">
+    <h5>By openning this solution you will loose 3 points from your score!</h5>
+    <p>Are you sure you want to continue?</p>
+    <button type="submit" onclick="document.getElementById('loose').value = 'yes';">Yes, I am sure</button>
+    <button type="submit" onclick="document.getElementById('loose').value = 'no';">No, I will keep trying!</button>
+</form>
+
+<script>
+
+
+
+</script>
+{% endblock %}
+

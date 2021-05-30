@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<form action="/sregister" method="post">
+<div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>Welcome</h3>
+                        <p>You are 30 seconds away from beginning your physics journey!</p>
+                        <a href="/login" style="color:white;text-decoration:underline">Have an account?<br>Login</a>
+                        <br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" href="#">Student</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" href="/gregister">Guest</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home">
+                                <h3 class="register-heading">Apply as a School Student</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <select name="names" class="form-control">
+                                                <option selected disabled>Name</option>
+                                                {% for name in names %}
+                                                <option>{{name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="pass" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="confirm" class="form-control" placeholder="Confirm Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="schools">School</label>
+                                            <select name="schools" id="schools" class="form-control">
+                                            {% for school in schools %}
+                                                <option>{{school}}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="class">Class (REQUIRED FOR STUDENTS ONLY)</label>
+                                            <br>
+                                            <select id="class" name="class" class="form-control">
+                                                <option selected disabled class="hidden">Class</option>
+                                                <option>11</option>
+                                                <option>12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline">
+                                                    Enter as a
+                                                <br>
+                                                <input type="radio" name="level" value="Student" checked>
+                                                <span> Student </span>
+                                                </label>
+                                                <label class="radio inline">
+                                                <input type="radio" value="Teacher" name="level">
+                                                <span>Teacher </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="teacherID">Teacher's code (REQUIRED FOR TEACHERS)</label>
+                                            <br>
+                                            <input name="teacherID" id="teacherID" class="form-control" placeholder="Write teacher's code">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="schoolID">School's Code</label>
+                                            <br>
+                                            <input id="schoolID" name="schoolID" class="form-control" placeholder="Write school's code" class="form-control">
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <select class="form-control" name="question" id="question" required>
+                                                <option class="hidden"  selected disabled>Please select your Security Question</option>
+                                                <option>What is your Birthdate?</option>
+                                                <option>What is Your old Phone Number?</option>
+                                                <option>What is your Favorite Name?</option>
+                                            </select>
+                                            <input name="answer" class="form-control" placeholder="Write here your answer" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btnRegister"  value="Register"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+{% endblock %}
+
+<script>
+
+</script>

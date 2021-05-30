@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block title %}
+    Problem
+{% endblock %}
+
+{% block main %}
+
+<p id="submited" hidden>{{submited}}</p>
+<form action="/learn/{{topic}}/problem/{{problem['id']}}" method="post" id="my_form">
+    <h2 id="problem_name">{{problem_name}}</h2>
+    <h3 id="question">{{problem['problem']}}</h3>
+    <img src="{{problem['img']}}" id="problem_img"/>
+    {% if submited == "false" %}
+    {% if problem['type'] == "Q-A" %}
+    {% for sol in solutions %}
+    {% if sol['problem_id'] == problem['id'] %}
+    <input type="number" step="0.01" name="{{sol['id']}}" id="{{sol['id']}}">
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if problem['type'] == "choose" %}
+    {% for radio in radios %}
+    {% if radio['problem_id'] == problem['id'] %}
+    <input type="radio" name="radio" id="{{radio['id']}}" value="{{radio['radio']}}">
+    <label for="{{radio['id']}}">{{radio['radio']}}</label>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endif %}
+    {% if rxn != "" %}
+    <div id="correctness">
+        <p id="rxn">{{rxn}}</p>
+    </div>
+    {% endif %}
+    {% if submited == "false" %}
+    <input type="hidden" name="submit" id="submit" value="noSubmit">
+    <button type="submit" onclick="document.getElementById('submit').value = 'submit';">Check the answer</button>
+
+    <input id="go" class="go" name="go" type="hidden" value="false">
+    <details id="solution">
+        <summary id="solName">Solution</summary>
+        <div id="loose">
+            <h5>By openning this solution you will loose 3 points from your score!</h5>
+            <p>Are you sure you want to continue?</p>
+            <a href="javascript:{}" class="openSol" onclick="document.getElementById('go').value = 'true';document.getElementById('my_form').submit();"><button id="yes">Yes, I am sure</button></a>
+            <button id="no">No, I will keep trying!</button>
+        </div>
+        <div id="done">
+            <a href="javascript:{}" class="openSol" onclick="document.getElementById('done').innerHTML = '{{problem['solution']}}';document.getElementById('my_form').submit();"><button id="show">Show Solution</button></a>
+        </div>
+    </details>
+    {% endif %}
+</form>
+<p id="loss" hidden>{{loss}}</p>
+<button id="color">Color it</button>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("no").addEventListener("click", function() {
+        document.getElementById("solution").removeAttribute("open");
+    });
+});
+if (document.getElementById("loss").innerHTML == "true") {
+        document.getElementById("done").style.display = 'none';
+        document.getElementById("loose").style.display = 'block';
+    }
+else {
+    document.getElementById("loose").style.display = 'none';
+    document.getElementById("done").style.display = 'block';
+}
+
+</script>
+{% endblock %}
+

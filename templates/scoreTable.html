@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block title %}
+    Competition
+{% endblock %}
+
+{% block main %}
+{% if mode == "School" %}
+<table>
+    <thead>
+        <tr><td>Teachers</td></tr>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+        <tr><td>{{teacher['username']}}</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br><br>
+{% endif %}
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Score</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        {% if student['class'] == classs %}
+        <tr>
+            <td>{{student['username']}}</td>
+            <td>{{student['score']}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% if mode == "School" %}
+<form action="/scoreTable" method="post">
+    <div class="form-group">
+        <select name="mode" class="form-control">
+            <option selected disabled class="hidden">Mode</option>
+            <option>School</option>
+            <option>Global</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" id="filterB" value="Filter">
+    </div>
+</form>
+{% endif %}
+<script>
+
+
+
+</script>
+{% endblock %}
+

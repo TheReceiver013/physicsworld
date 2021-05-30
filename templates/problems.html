@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}
+    Problem
+{% endblock %}
+
+{% block main %}
+
+{% for problem in problems %}
+    <div id="{{problem['class']}}">
+        <div id="{{problem['unit']}}">
+            <div id="{{problem['lesson']}}">
+                <div id="{{problem['topic']}}">
+                    <form action="/problems" method="post" id="{{problem['id']}}">
+                        <h3>{{problem['problem']}}</h3>
+                        {% if problem['type'] == "Q-A" %}
+                        <div id="{{problem['id']}}">
+                            {% for sol in solutions %}
+                            {% if sol['problem_id'] == problem['id'] %}
+                                <input type="number" name="{{sol['id']}}" id="{{sol['id']}}">
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if problem['type'] == "choose" %}
+                        <div id="{{problem['id']}}">
+                            {% for radio in radios %}
+                            {% if radio['problem_id'] == problem['id'] %}
+                                <input type="radio" name="{{radio['problem_id']}}" id="{{radio['id']}}">
+                                <label for="{{radio['id']}}">{{radio['radio']}}</label>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        <button type="submit">Check the answer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<button id="color">Color it</button>
+<p id="{{maxP}}"></p>
+<script>
+
+    maxP = document.querySelector("p").id;
+    maxPi = parseInt(maxP);
+    for (let i = 1; i < maxPi+1; i++)
+    {
+        index = i.toString();
+        document.querySelector("#color").addEventListener("click", function() {
+            for (let j = 1; j < maxPi+1; j++)
+            {
+                indexj = j.toString();
+                document.getElementById(indexj).hidden = true;
+            }
+            document.getElementById(index).hidden = false;
+        });
+    }
+
+</script>
+{% endblock %}
+

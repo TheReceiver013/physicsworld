@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}
+    Map
+{% endblock %}
+
+{% block main %}
+
+<article id="{{info_id}}">
+    {% for part in parts %}
+    {% if part['type'] == "title" %}
+    <h1>{{part['info']}}</h1>
+    {% endif %}
+    {% if part['type'] == "text" %}
+    <p>{{part['info']}}</p>
+    {% endif %}
+    {% if part['type'] == "img" %}
+    <img src="{{part['info']}}">
+    {% endif %}
+    {% if part['type'] == "graph" %}
+    <div class="graph" id="{{part['info']}}"></div>
+    {% endif %}
+    {% endfor %}
+</article>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block title %}
+    Add Problem
+{% endblock %}
+
+{% block main %}
+<form action="/add/{{typee}}/{{nb}}" method="post">
+    <label for="problem">Problem</label>
+    <input id="problem" name="problem" type="text" placeholder="Write here the problem">
+    <label for="img">Image URL(not required)</label>
+    <input type="file" id="img" name="img" placeholder="Insert an image describes your problem!">
+    {% if typee == "Radio" %}
+    {% for i in range(nb) %}
+    <label for="radio">Option {{i+1}}</label>
+    <input id="radio{{i}}" name="radio{{i}}" type="text">
+    {% endfor %}
+    <label for="minisol">Answer</label>
+    <input id="minisol" type="text" name="minisol" placeholder="Small Answer">
+    {% endif %}
+    {% if typee == "Q-A" %}
+    {% for i in range(nb) %}
+    <label for="minisol">Answer {{i+1}}</label>
+    <input id="minisol{{i}}" type="number" step="0.01" name="minisol{{i}}" placeholder="Small Answer">
+    {% endfor %}
+    {% endif %}
+    <label for="solution">Solution</label>
+    <input id="solution" name="solution" type="text" placeholder="Write a detailed solution">
+    <br>
+    <label for="problem_name">Problem Title</label>
+    <input id="problem_name" name="problem_name" placeholder="Choose a special problem title">
+    <br>
+    <label for="class">Class</label>
+    <select id="class" name="class">
+        {% for class in classes %}
+        <option>{{class}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="unit">Unit</label>
+    <input name="unit" list="unit">
+    <datalist id="unit">
+        {% for unit in units %}
+        <option>{{unit['unit']}}</option>
+        {% endfor %}
+    </datalist>
+    <br>
+    <label for="lesson">Lesson</label>
+    <input name="lesson" list="lesson">
+    <datalist id="lesson">
+        {% for lesson in lessons %}
+        <option>{{lesson['lesson']}}</option>
+        {% endfor %}
+    </datalist>
+    <br>
+    <label for="topic">Topic</label>
+    <input name="topic" list="topic">
+    <datalist id="topic">
+        {% for topic in topics %}
+        <option>{{topic['topic']}}</option>
+        {% endfor %}
+    </datalist>
+    <br>
+    <label for="level">Level</label>
+    <select id="level" name="level">
+        {% for level in levels %}
+        <option>{{level}}</option>
+        {% endfor %}
+    </select>
+    <button id="submit" type="submit">Insert The Problem!</button>
+</form>
+
+<script>
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+});
+
+</script>
+{% endblock %}
+

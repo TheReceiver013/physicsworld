@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<form action="/learn" method="post">
+    <input type="hidden" name="topic" value="{{topic}}">
+    <input type="hidden" name="problem_id" value="{{problem_id}}">
+    <input type="hidden" name="find" value="true">
+    <button type="submit" id="find">Find my challenge!</button>
+</form>
+{% endblock %}

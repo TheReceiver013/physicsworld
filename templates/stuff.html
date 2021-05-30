@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}
+    Map
+{% endblock %}
+
+{% block main %}
+
+{% for unit in units %}
+<details>
+    <summary>{{unit['unit']}}</summary>
+{% for lesson in lessons %}
+{% if lesson['unit'] == unit['unit'] %}
+<details>
+    <summary>{{lesson['lesson']}}</summary>
+{% for topic in topics %}
+{% if topic['lesson'] == lesson['lesson'] %}
+<details>
+    <summary>{{topic['topic']}}</summary>
+    <form action="/learn" method="post" id="my_form">
+        <input type="hidden" name="find" value="false">
+        <input type="hidden" name="topic" id="topic" value="{{topic['topic']}}">
+        <button id="learnB" type="submit">Learn</button>
+        <details>
+            <summary>Problems</summary>
+            {% for problem in problems %}
+            {% if problem['topic'] == topic['topic'] %}
+            <input type="hidden" id="problem_id" name="problem_id" value="nth">
+            <a href="javascript:{}" class="problemLinks" onclick="document.getElementById('problem_id').value = '{{problem['id']}}';document.getElementById('my_form').submit();">{{problem['problem_name']}}</a>
+            {% endif %}
+            {% endfor %}
+        </details>
+    </form>
+</details>
+{% endif %}
+{% endfor %}
+</details>
+{% endif %}
+{% endfor %}
+</details>
+{% endfor %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (document.getElementsByClassName("problemLink").clicked == false) {
+        document.getElementById("problem_id").value = 'nth';
+    }
+});
+
+</script>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}
+    Solution
+{% endblock %}
+
+{% block main %}
+
+{% for minisol in minisols %}
+<p class="minisol">{{minisol['solution']}}</p>
+{% endfor %}
+<p id="sol">{{sol}}</p>
+
+<script>
+
+
+
+</script>
+{% endblock %}
+

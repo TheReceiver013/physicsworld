@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<a href="/addDaily"><button>Add Post</button></a>
+<blockquote>
+    <p id="quote">{{quote}}</p>
+    <h5 id="writer">{{writer}}</h5>
+</blockquote>
+<a href="/learn"><button id="learn">Learn</button></a>
+<a href="/choose"><button id="randomTask">Random Task</button></a>
+<br>
+<div id="dailyPosts">
+    <h2 id="dailyTitle">Daily Posts</h2>
+    <hr>
+    <div id="notes">
+        <h3 class="subtitle">Notes</h3>
+        <a href="/addDaily"><button>Add</button></a>
+        {% for post in posts %}
+        {% if post['type'] == "Note" %}
+        {% if post['class'] == classs %}
+        <h4 class="title">{{post['title']}}</h4>
+        <p class="text">{{post['text']}}</p>
+        <p class="writer">{{post['writer']}}</p>
+        <br>
+        <img src="{{post['img']}}"/>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    <hr>
+    <div id="facts">
+        <h3 class="subtitle">Facts</h3>
+        <a href="/addDaily"><button>Add</button></a>
+        {% for post in posts %}
+        {% if post['type'] == "Fact" %}
+        {% if post['class'] == classs %}
+        <h4 class="title">{{post['title']}}</h4>
+        <p class="text">{{post['text']}}</p>
+        <p class="writer"><i>{{post['writer']}}</i></p>
+        <br>
+        <img src="{{post['img']}}"/>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

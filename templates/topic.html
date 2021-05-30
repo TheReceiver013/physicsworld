@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}
+    topic
+{% endblock %}
+
+{% block main %}
+{% for problem in problems %}
+<form action="/learn/{{topic}}" method="post" name="problems" id="{{problem['id']}}">
+    <input type="hidden" name="problem" value="{{problem['id']}}">
+    <button type="submit" name="{{topic}}">Problem 1</button>
+</form>
+{% endfor %}
+{% endblock %}
+

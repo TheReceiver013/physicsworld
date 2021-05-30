@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<form action="/addDaily" method="post">
+    <label for="type">What is the type that suits your idea?</label>
+    <select id="type" name="type">
+        <option>Note</option>
+        <option>Fact</option>
+    </select>
+    <label for="title">Title</label>
+    <input id="title" name="title" placeholder="Write a special title" focused>
+    <label for="text">Text</label>
+    <input id="text" name="text" placeholder="Write your idea here">
+    <label for="img">Image</label>
+    <input id="img" name="img" placeholder="Insert an image by url!">
+    <select id="class" name="class" class="form-control" required>
+        <option selected disabled>Class</option>
+        <option>11</option>
+        <option>12</option>
+    </select>
+    <button type="submit">Post</button>
+</form>
+
+{% endblock %}

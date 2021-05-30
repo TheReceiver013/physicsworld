@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}
+    Choose Problem Type
+{% endblock %}
+
+{% block main %}
+<form action="/add" method="post">
+    <h3>Type of Problem</h3>
+    <select id="type" name="type">
+        <option>Radio</option>
+        <option>Q-A</option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
+
